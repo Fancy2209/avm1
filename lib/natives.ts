@@ -117,6 +117,7 @@ class AVM1ObjectPrototype extends AVM1Object {
 		if (desc && !!(desc.flags & AVM1PropertyFlags.DONT_DELETE)) {
 			return false; // protected property
 		}
+		// @ts-ignore
 		this.alSetOwnProperty(name, new AVM1PropertyDescriptor(AVM1PropertyFlags.ACCESSOR, null,
 			getter, setter || undefined));
 		return true;
@@ -631,7 +632,7 @@ export class AVM1StringFunction extends AVM1Function {
 }
 
 // Array natives
-
+// @ts-ignore
 const cachedArrayPropertyDescriptor = new AVM1PropertyDescriptor(AVM1PropertyFlags.DATA,
 	undefined);
 
