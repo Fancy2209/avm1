@@ -30,7 +30,7 @@ import {
 	alToInt32,
 	alToInteger,
 	alToNumber,
-	alToObject, alToPrimitive, alToString, AVM1DefaultValueHint, AVM1PropertyFlags,
+	alToObject, alToPrimitive, alToString, AVM1DefaultValueHint, /*AVM1PropertyFlags,*/
 	IAVM1Context
 } from './runtime';
 import { Debug, release, isIndex } from '@awayfl/swf-loader';
@@ -38,6 +38,15 @@ import { AVM1Object } from './runtime/AVM1Object';
 import { AVM1Globals } from './lib/AVM1Globals';
 import { AVM1Function } from './runtime/AVM1Function';
 import { AVM1PropertyDescriptor } from './runtime/AVM1PropertyDescriptor';
+
+const enum AVM1PropertyFlags {
+	DONT_ENUM = 1,
+	DONT_DELETE = 2,
+	READ_ONLY = 4,
+	DATA = 64,
+	ACCESSOR = 128,
+	ASSETPROP_MASK = DONT_DELETE | DONT_ENUM | READ_ONLY
+}
 
 class AVM1ObjectPrototype extends AVM1Object {
 	public constructor(context: IAVM1Context) {
